@@ -1,0 +1,16 @@
+CC = gcc
+
+#openssl  安装路径
+LIBPATH = /usr/local/ssl/include
+LIBSSL = /usr/local/ssl/lib64
+
+
+TARGERT = OPENSSLTEST_P7B
+$(TARGERT):TestOpenssl.o
+	$(CC) -o $(TARGERT) TestOpenssl.o -I $(LIBPATH) -L $(LIBSSL) -lssl -lcrypto -ldl
+
+TestOpenssl.o:TestOpenssl.c
+	$(CC) -c -o TestOpenssl.o  TestOpenssl.c 
+
+clean:
+	rm -f $(TARGERT) *.o
